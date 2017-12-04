@@ -54,9 +54,9 @@ int main(int argc, char const *argv[])
     scanf("%s", email); 
     send(sock, email, strlen(email), 0);
 
-    // printf("\nFrom: ");
-    // scanf("%s", emailDest);
-    // send(sock, emailDest, strlen(emailDest), 0);
+    printf("\nFrom: ");
+    scanf("%s", emailDest);
+    send(sock, emailDest, strlen(emailDest), 0);
 
     // printf("Hello message sent\n");
     char *accepted = "E-mail confirmed, please, send your message";

@@ -15,6 +15,7 @@ int main(int argc, char const *argv[])
     int opt = 1;
     int addrlen = sizeof(address);
     char buffer[1024] = {0};
+    char buffer2[1024] = {0};
     char *hello = "Hello from server";
 
     // Creating socket file descriptor
@@ -61,17 +62,37 @@ int main(int argc, char const *argv[])
     int size = strlen(buffer); 
     printf("%d\n", size);
 
+    // waiting for the second connection
+    valread = read(new_socket, buffer2, 1024);
+    printf("%s\n", buffer2);
+
+    // get buffer size
+    int size2 = strlen(buffer2);
+    printf("%d\n", buffer2);
+
     int i = 0;
-    int found = 0;  
+    int found = 0;
+    int found2 = 0;  
     
     // email validation
     for(i = 0; i < size; i++) {
         if (buffer[i] == 64) {
             found = 1;
         }
+        // printf("%c", buffer[i]);
     }
-    
-    if (found) {
+
+    // second mail validation 
+    for (i = 0; i < size; i++)
+    {
+        if (buffer2[i] == 64)
+        {
+            found2 = 1;
+        }
+        // printf("%c", buffer[i]);
+    }
+
+    if (found && found2) {
         printf("Found\n");
         char *accepted = "accepted";
         send(new_socket, accepted, strlen(accepted), 0);        
@@ -82,8 +103,8 @@ int main(int argc, char const *argv[])
         exit(1);
     }
 
-    //char message[1024] = {0};
-    //valread = read(new_socket, message, 1024);
+    char message[1024] = {0};
+    valread = read(new_socket, message, 1024);
 
     // send(new_socket, hello, strlen(hello), 0);
     // printf("Hello message sent\n");
