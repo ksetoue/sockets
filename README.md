@@ -9,5 +9,24 @@ The Client application also waits the server response. If the connection is acep
 
 * Server application that verifies if the contact info is valid, and returns a messege with the request response. After that, the server awaits for the mail content from the client, and, after receiving it, the connection is closed.
 
+The email text content is retrived from file named `send.txt`. The server output is located at `sample_file.txt`.
+
+## Usage
+
+Compile: 
+``` sh 
+    gcc client.c -o client
+    gcc server.c -o server
+```
+
+Run: 
+
+``` sh
+    ./server
+    ./client    # in another bash
+```
+
+
+
 
 
